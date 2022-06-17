@@ -1,4 +1,5 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify
+from flask import request as rq
 
 app = Flask(__name__)
 
@@ -18,12 +19,13 @@ def get_incomes():  # put application's code here
 
 @app.route('/incomes', methods=['POST'])
 def add_income():
-    incomes.append(request.get_json())
+    incomes.append(rq.get_json())
     return '', 204
 
 
+@app.route("/")
 def nonConflict():
-    return "wildcard"
+    return "home"
 
 
 if __name__ == '__main__':
